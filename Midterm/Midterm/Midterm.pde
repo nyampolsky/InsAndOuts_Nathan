@@ -131,12 +131,27 @@ blendMode(NORMAL);
     fill(255);
     text("*Click-clack*", 700, 700);
   } 
+  
+  if (currentTime>timer4) {
+    
+    state = 2;
+    
+  } 
 
 }
 
 else if (state==2) {
+  textMode(CENTER);
+  background (255);
+  strokeWeight(3);
+  fill(0);
+  text("Click on the ships to guide them!", 250, 75);
   
+  fill(235,235,0);
+  triangle(mouseX, height, height, height, mouseX, mouseY);
   
+  fill(100,100,0);
+  drawTarget(mouseX, mouseY, 100, 10);
 
 }
 
