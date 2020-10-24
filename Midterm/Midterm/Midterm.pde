@@ -1,37 +1,45 @@
 int y = 0;
+int state = 0;
+int fade = 1;
+int currentTime=0; 
+int timer1= 5000; 
+int timer2=6000; 
+int timer3=7000;
+int timer4=10000;
+float textSpace = random(100,500);
+float textSpace1 = random(100,500);
 
 
 void setup () {
   
   size (1000,1000);
 
-// lighthouse  
 
-  beginShape();
-  vertex(400,200);
-  vertex(600,200);
-  vertex(750,800);
-  vertex(250,800); 
-  endShape(CLOSE);
+
+}
+
+
+
+void draw () {
+
+  currentTime=millis();
   
-  fill(120,0,0);
-  beginShape();
-  vertex(400,200);
-  vertex(600,200);
-  vertex(635,340);
-  vertex(355,385); 
-  endShape(CLOSE);
+//find_position_on_screen//
+
+
+
+  println("x = " + mouseX);
+  println("y =" + mouseY);
   
   
- fill(120,0,0);
-  beginShape();
-  vertex(288,655);
-  vertex(696,588);
-  vertex(750,800);
-  vertex(250,800); 
-  endShape(CLOSE);
+//find_position_on_screen//
+
+
+if (state==0) {
   
-// lighthouse 
+ // draws lighthouse body
+ 
+ lighthouse();
 
 // top window
 
@@ -70,36 +78,70 @@ beginShape();
   vertex(325,99); 
   endShape(CLOSE);
 
-}
-
-
-
-void draw () {
-
-  
-//find_position_on_screen//
-
-
-
-  println("x = " + mouseX);
-  println("y =" + mouseY);
-  
-  
-//find_position_on_screen//
-
 //beacon light
   
   drawTarget(width/2, 137, 70, 10);
   
-if((mouseX > 250) && (mouseX < 300))
+if((mouseX > 470) && (mouseX < 530 && mouseY < 805 && mouseY > 705))
 
 {
 fill(0);
-ellipse(300,350,50,50);
-fill(0);
-rect(300,375,50,50);
+strokeWeight(2);
+rect(width/2-30,715, 60, 85);  
+
+textSize(40);
+text("ENTER?", 440, 850);
 
 }
+  else {
+    
+    fill(255);
+strokeWeight(2);
+rect(width/2-30,715, 60, 85);
+
+
+}
+  
+  
+
+}
+else if (state==1) {
+
+// fade effect
+
+blendMode(SUBTRACT);
+fill(2);
+rect(0, 0, width, height);
+blendMode(NORMAL);
+
+ if (currentTime>timer1) {
+    background(0);
+    fill(255);
+    text("*Click-clack*", textSpace, textSpace1);
+  } 
+  
+  if (currentTime>timer2) {
+    background(0);
+    fill(255);
+    text("*Click-clack*", 500, 500);
+  } 
+  
+  if (currentTime>timer3) {
+    background(0);
+    fill(255);
+    text("*Click-clack*", 700, 700);
+  } 
+
+}
+
+else if (state==2) {
+  
+  
+
+}
+
+
+
   
 }
 
@@ -113,4 +155,44 @@ void drawTarget(float xloc, float yloc, int size, int num) {
     ellipse(xloc, yloc, size - i*steps, size - i*steps);
   }
   
+}
+
+void lighthouse() {
+  
+  // lighthouse  
+
+  beginShape();
+  vertex(400,200);
+  vertex(600,200);
+  vertex(750,800);
+  vertex(250,800); 
+  endShape(CLOSE);
+  
+  fill(120,0,0);
+  beginShape();
+  vertex(400,200);
+  vertex(600,200);
+  vertex(635,340);
+  vertex(355,385); 
+  endShape(CLOSE);
+  
+  
+ fill(120,0,0);
+  beginShape();
+  vertex(288,655);
+  vertex(696,588);
+  vertex(750,800);
+  vertex(250,800); 
+  endShape(CLOSE);
+  
+// lighthouse 
+  
+}
+
+ void mousePressed() {
+  if ((mouseX > 470) && (mouseX < 530 && mouseY < 805 && mouseY > 705)) 
+   
+  {
+    state = 1;
+  }
 }
