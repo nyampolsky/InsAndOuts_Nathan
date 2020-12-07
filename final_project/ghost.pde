@@ -9,6 +9,7 @@ class ghost {
   int time_frame = (int)random(min_time, max_time);
   int time_stamp = 0;
   boolean reveal_ghost = true;
+  boolean buttonpressed = false;
 //constructor
 
   ghost(float tempX, int tempY, String tempImg, int tempImgWidth, int tempImgHeight) {
@@ -25,28 +26,37 @@ class ghost {
     
     image (ghost1, x, y, imgWidth, imgHeight);
     fill(0,0,0,val);
-    ellipse(x,y,100,100);
+    ellipse(x,y,200,200);
     
     
   } 
 
-  void capture() {
+  void stun() {
     
     if (val >= 210) {
     
     int time_passed = millis() - time_stamp;
 
-  if (time_passed < time_frame && show_door) {
+  if (time_passed < time_frame && reveal_ghost) {
     display();
   } else if (time_passed >= time_frame) {
     time_stamp = millis();
     time_frame = (int)random(min_time, max_time);
-    show_door = !show_door;
+    reveal_ghost = !reveal_ghost;
   }
       
     }
    
   }
 
+void capture () {
+  
+  if (val >= 210 && buttonpressed==true) {
+    
+    
+    
+  }
+  
+}
     
   }
