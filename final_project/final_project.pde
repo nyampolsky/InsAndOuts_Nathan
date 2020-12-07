@@ -7,25 +7,22 @@ PImage bg1;
 int currentTime=0; 
 int timer1=10000;
 ghost ghost1;
+import processing.serial.*; 
+Serial myPort;
+int val=0; 
 
-
-int val=0; // creates variable for data coming from serial port
-
-
-import processing.serial.*; //imports Serial library from Processing
-Serial myPort; // creates object from Serial class
 
 
 void setup() {
-  ghost1 = new ghost(100, 100, "ghost1.png", 100, 175);
+  
   size(750, 750);
   textSize(40);
   smooth(); 
   textAlign(CENTER);
-  
+  ghost1 = new ghost(100, 100, "ghost1.png", 100, 175);
   
   printArray(Serial.list()); // this line prints the port list to the console
-  String portName = Serial.list()[1]; //change the number in the [] for the port you need
+  String portName = Serial.list()[0]; //change the number in the [] for the port you need
   myPort = new Serial(this, portName, 9600);
   
   
@@ -34,13 +31,14 @@ void setup() {
 }
  
 void draw() {
+  if ( myPort.available() > 0) { // If data is available,
+  val = myPort.read(); // read it and store it in val
   currentTime=millis();
   println (val); //prints to Processing console 
   image(bg1, width, height);
  
  
- if ( myPort.available() > 0) { // If data is available,
- val = myPort.read(); // read it and store it in val
+ 
  }
  
  

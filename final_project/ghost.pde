@@ -4,8 +4,8 @@ class ghost {
   PImage ghost1;
   int imgWidth;
   int imgHeight;
-  int min_time = 3000; // in ms
-  int max_time = 8000; // in ms
+  int min_time = 500; // in ms
+  int max_time = 1500; // in ms
   int time_frame = (int)random(min_time, max_time);
   int time_stamp = 0;
   boolean reveal_ghost = true;
@@ -23,10 +23,10 @@ class ghost {
   //methods
   
   void display() {
+    fill(val);
+    ellipse(x+200,y+200,100,100);
+    image (ghost1, x+200, y+200, imgWidth, imgHeight);
     
-    image (ghost1, x, y, imgWidth, imgHeight);
-    fill(0,0,0,val);
-    ellipse(x,y,200,200);
     
     
   } 
