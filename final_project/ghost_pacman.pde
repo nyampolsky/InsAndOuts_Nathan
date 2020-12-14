@@ -1,7 +1,7 @@
-class ghost {
+class ghost_pacman {
   float x;
   int y;
-  PImage ghost1;
+  PImage ghost2;
   int imgWidth;
   int imgHeight;
   int min_time = 250; // in ms
@@ -16,10 +16,10 @@ class ghost {
   float ySpeed = 5;
 //constructor
 
-  ghost(float tempX, int tempY, String tempImg, int tempImgWidth, int tempImgHeight) {
+  ghost_pacman(float tempX, int tempY, String tempImg, int tempImgWidth, int tempImgHeight) {
     x= tempX;
     y= tempY;
-    ghost1= loadImage (tempImg);
+    ghost2= loadImage (tempImg);
     imgWidth = tempImgWidth;
     imgHeight = tempImgHeight;
   }
@@ -29,7 +29,7 @@ class ghost {
   void display() {
     fill(val);
     ellipse(x1+200,y1+200,100,100);
-    image (ghost1, x1+200, y1+200, imgWidth, imgHeight);
+    image (ghost2, x1+200, y1+200, imgWidth, imgHeight);
     
   } 
 
@@ -83,9 +83,9 @@ void capture () {
   
   }
 
- if (val >= 210 && buttonpressed == true) {
+ if (val > 190 && (val < 210) && buttonpressed == true) {
  
-   state = 2;
+   state = 3;
  }
    
    else {
