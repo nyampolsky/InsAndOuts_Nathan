@@ -1,7 +1,12 @@
 class ghost {
   float x;
-  int y;
+  float y;
   PImage ghost1;
+  PImage ghost2;
+  PImage ghost3;
+  PImage ghost_captured;
+  PImage ghost_captured1;
+  PImage ghost_captured2;
   int imgWidth;
   int imgHeight;
   int min_time = 250; // in ms
@@ -10,13 +15,13 @@ class ghost {
   int time_stamp = 0;
   boolean reveal_ghost = true;
   boolean buttonpressed = false;
-  float x1 = 600;
-  float y1 = 300;
+  float x1 = random(200, 600);
+  float y1 = random(200, 600);
   float xSpeed = 5;
   float ySpeed = 5;
 //constructor
 
-  ghost(float tempX, int tempY, String tempImg, int tempImgWidth, int tempImgHeight) {
+  ghost(float tempX, float tempY, String tempImg, int tempImgWidth, int tempImgHeight) {
     x= tempX;
     y= tempY;
     ghost1= loadImage (tempImg);
@@ -27,13 +32,20 @@ class ghost {
   //methods
   
   void display() {
-    fill(val);
-    ellipse(x1+200,y1+200,100,100);
+    
     image (ghost1, x1+200, y1+200, imgWidth, imgHeight);
+    fill(255,255,255,val);
+    ellipse(x1+200,y1+200,100,100);
+  } 
+  
+  void gc() {
+    
+    image (ghost1, 530, 80, imgWidth/2, imgHeight/2);
     
   } 
 
-  void stun() {
+ 
+ void stun() {
     
     if (val >= 210) {
     
@@ -50,6 +62,7 @@ class ghost {
     }
    
   }
+
 
 
 void floataround () {
@@ -76,7 +89,7 @@ void capture () {
   buttonpressed = true; 
   
   }
-    
+  
     else {
       
       buttonpressed = false; 
@@ -88,11 +101,50 @@ void capture () {
    state = 2;
  }
    
-   else {
    
-     state = 0;
+ }
+ 
+ void capture1 () {
+  
+  if (BUTTONval == 1){
+  
+  buttonpressed = true; 
+  
+  }
+  
+    else {
+      
+      buttonpressed = false; 
+  
+  }
+
+ if (val >= 150 && buttonpressed == true) {
+ 
+   state = 3;
+ }
    
-   }
+   
+ }
+ 
+  void capture2 () {
+  
+  if (BUTTONval == 1){
+  
+  buttonpressed = true; 
+  
+  }
+  
+    else {
+      
+      buttonpressed = false; 
+  
+  }
+
+ if (val >= 60 && buttonpressed == true) {
+ 
+   state = 4;
+ }
+   
    
  }
   
